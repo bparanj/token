@@ -3,10 +3,7 @@ class SessionsController < ApiController
 
   def create
     resource = User.find_for_database_authentication(:email => params[:user_login][:email])
-    return invalid_login_attempt unless resource
-
-    if resource.authenticate(params[:user_login][:password])
-      auth_token = resource.regenerate_auth_token
+    if resource && resource.authenticate(params[:user_login][:password])
       render json: { auth_token: resource.auth_token }
     else
       invalid_login_attempt

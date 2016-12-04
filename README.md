@@ -7,12 +7,14 @@ curl -X POST --data "user_login%5Bemail%5D=jon2%40mccartie.com&user_login%5Bpass
 curl -X DELETE -H "Authorization: Token token=GUagGpYUhVgSLz7hgV9gnuMx" http://localhost:3000/sign-out.json
 curl -H "Authorization: Token token=351d6d7402ac290deacf15f69e925cdf" http://localhost:3000/hacker_spots/index.json
 
-curl -H "Authorization: Token token=GUagGpYUhVgSLz7hgV9gnuMx" http://localhost:3000/hacker_spots/index.json
+curl -H "Authorization: Token token=y3X4bKSkHnSKaQrWsQLELj5D" http://localhost:3000/hacker_spots/index.json
 
 
-{"auth_token":"vNo4QiG2rEqSz5MCg5ujEHWo"}$ 
 
-curl -X DELETE -H "Authorization: Token token=67xkDVcZxSGmjJmctFnHfDh4" http://localhost:3000/sign-out.json
+
+
+
+curl -X DELETE -H "Authorization: Token token=y3X4bKSkHnSKaQrWsQLELj5D" http://localhost:3000/sign-out.json
 
 1. password_digest string attribute to User
 2. gem 'bcrypt', '~> 3.1.7'
