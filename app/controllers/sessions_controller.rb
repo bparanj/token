@@ -2,9 +2,11 @@ class SessionsController < ApiController
   skip_before_action :require_login!, only: [:create], raise: false
 
   def create
-    resource = User.find_for_database_authentication(:email => params[:user_login][:email])
-    if resource && resource.authenticate(params[:user_login][:password])
-      render json: { auth_token: resource.auth_token }
+    user = User.valid_login?(params[:user_login][:email], params[:user_login][:password])
+    if user
+      # token must be allowed to be used only once
+      user.regenerate_auth_token
+      render json: { auth_token: user.auth_token }
     else
       invalid_login_attempt
     end
@@ -19,7 +21,7 @@ class SessionsController < ApiController
   private
   
   def invalid_login_attempt
-    render json: { errors: [ { detail:"Error with your login or password" }]}, status: 401
+    render json: { errors: [ { detail:"Error with your login or password" }]}, status: :unauthorized
   end
   
 end

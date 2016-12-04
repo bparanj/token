@@ -2,12 +2,18 @@
 
 How to build token based API authentication without using any bloated authentication gem.
 
+must be allowed to be used only once
+should have an expiry date (e.g. 7 days)
+must only be usable for the user it was created for
+must only be sent via HTTPS
+
+
 curl -X POST --data "user_login%5Bemail%5D=jon2%40mccartie.com&user_login%5Bpassword%5D=123456" http://localhost:3000/sign-in.json
 
-curl -X DELETE -H "Authorization: Token token=GUagGpYUhVgSLz7hgV9gnuMx" http://localhost:3000/sign-out.json
+curl -X DELETE -H "Authorization: Token token=LXAzJmKYXh1XYPjHtwa5Py1U" http://localhost:3000/sign-out.json
 curl -H "Authorization: Token token=351d6d7402ac290deacf15f69e925cdf" http://localhost:3000/hacker_spots/index.json
 
-curl -H "Authorization: Token token=y3X4bKSkHnSKaQrWsQLELj5D" http://localhost:3000/hacker_spots/index.json
+curl -H "Authorization: Token token=LXAzJmKYXh1XYPjHtwa5Py1U" http://localhost:3000/hacker_spots/index.json
 
 
 
