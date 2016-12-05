@@ -1,13 +1,10 @@
 class ApiController < ActionController::Base
   def require_login!
     return true if authenticate_token
-    render json: { errors: [ { detail: "Access denied" } ] }, status: 401
+    errors = { errors: [ { detail: "Access denied" } ] }
+    render json: errors, status: :unauthorized
   end
-    
-  def user_signed_in?
-    current_person.present?
-  end
-  
+      
   def current_user
     @current_user ||= authenticate_token
   end

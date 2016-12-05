@@ -7,6 +7,34 @@ should have an expiry date (e.g. 7 days)
 must only be usable for the user it was created for
 must only be sent via HTTPS
 
+1. Create a migration with token_created_at field.
+$ rails g migration add_token_created_at_to_users token_created_at:datetime
+class AddTokenCreatedAtToUsers < ActiveRecord::Migration
+  def change
+    add_column :users, :token_created_at, :datetime
+    remove_index :users, :auth_token
+    add_index :users, [:auth_token, :token_created_at]
+  end
+end
+2. Touch this field whenever a token is generated.
+
+def generate_auth_token
+    token = SecureRandom.hex
+    self.update_columns(auth_token: token, token_created_at: Time.zone.now)
+    token
+  end
+
+  def invalidate_auth_token
+    self.update_columns(auth_token: nil, token_created_at: nil)
+  end
+  
+3. In base controller:
+def authenticate_token
+  authenticate_with_http_token do |token, options|
+    User.where(auth_token: token).where("token_created_at >= ?", 7.days.ago).first
+  end
+end
+
 
 curl -X POST --data "user_login%5Bemail%5D=jon2%40mccartie.com&user_login%5Bpassword%5D=123456" http://localhost:3000/sign-in.json
 

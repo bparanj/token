@@ -4,7 +4,7 @@ class SessionsController < ApiController
   def create
     user = User.valid_login?(params[:user_login][:email], params[:user_login][:password])
     if user
-      # token must be allowed to be used only once
+      # Allow token be used only once
       user.regenerate_auth_token
       render json: { auth_token: user.auth_token }
     else
@@ -13,15 +13,15 @@ class SessionsController < ApiController
   end
 
   def destroy
-    resource = current_user
-    resource.invalidate_auth_token
+    current_user.invalidate_auth_token
     head :ok
   end
 
   private
   
   def invalid_login_attempt
-    render json: { errors: [ { detail:"Error with your login or password" }]}, status: :unauthorized
+    errors = { errors: [ { detail:"Error with your login or password" }]}
+    render json: errors, status: :unauthorized
   end
   
 end
