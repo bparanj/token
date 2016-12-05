@@ -16,5 +16,4 @@ class ApiController < ActionController::Base
       User.find_by(auth_token: token)
     end
   end
-  
 end
