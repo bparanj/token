@@ -1,4 +1,4 @@
-# README
+# Watch the Screencast
 
 How to build token based API authentication without using any bloated authentication gem.
 
