@@ -2,6 +2,9 @@
 
 How to build token based API authentication without using any bloated authentication gem.
 
+[Securing an API in Rails 5 using Token Based API Authentication](https://www.rubyplus.com/episodes/191-Securing-an-API-using-Token-Based-Authentication-in-Rails-5)
+
+
 must be allowed to be used only once
 should have an expiry date (e.g. 7 days)
 must only be usable for the user it was created for
