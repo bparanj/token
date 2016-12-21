@@ -2,8 +2,7 @@
 
 How to build token based API authentication without using any bloated authentication gem.
 
-[Securing an API in Rails 5 using Token Based API Authentication](https://d3vdezm4pezfi4.cloudfront.net/token-based-authentication.mp4)
-
+[![Securing an API in Rails 5 using Token Based API Authentication](https://www.rubyplus.com/images/RAILS-res-3000px-winning-purple.png)](https://d3vdezm4pezfi4.cloudfront.net/token-based-authentication.mp4)
 
 must be allowed to be used only once
 should have an expiry date (e.g. 7 days)
